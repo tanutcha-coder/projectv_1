@@ -37,7 +37,10 @@ dependencies:
   #copy text
   clipboard: ^0.1.2+8
   avatar_glow: ^2.0.1
-  speech_to_text: ^4.2.2
+  #speech_to_text: ^4.2.2
+  speech_recognition: ^0.3.0+1
+  webview_flutter: ^2.0.13
+  
 
 dev_dependencies:
   flutter_test:

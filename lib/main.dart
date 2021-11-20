@@ -6,9 +6,12 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:projectv_1/state/QRgenerater.dart';
 import 'package:projectv_1/state/Speech.dart';
 import 'package:projectv_1/utility/my_constant.dart';
-
 import 'package:flutter/cupertino.dart';
 
+import 'package:webview_flutter/webview_flutter.dart';
+
+// ignore: invalid_language_version_override
+// @dart=2.9
 final Map<String, WidgetBuilder> map = {
   '/qrgen': (BuildContext context) => QRGen(),
 };
@@ -61,6 +64,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
+      print(1);
       _scanBarcode = barcodeScanRes;
     });
   }
@@ -167,16 +171,14 @@ class _MyAppState extends State<MyApp> {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: TextButton(
-                          onPressed: () => scanBarcodeNormal(),
-                          child: Text(
-                            'Start barcode scan',
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                              
-                          )),
-                         
+                              onPressed: () => scanBarcodeNormal(),
+                              child: Text(
+                                'Start barcode scan',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              )),
                         ),
 
                         //scanQR
@@ -189,7 +191,10 @@ class _MyAppState extends State<MyApp> {
                             color: Colors.lightBlue,
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          child: TextButton(
+                          child: WebView(
+                            initialUrl: 'https://flutter.dev/',
+                          ),
+                          /*child: TextButton(
                               onPressed: () => scanQR(),
                               child: Text(
                                 'Start QR scan',
@@ -197,7 +202,7 @@ class _MyAppState extends State<MyApp> {
                                     fontSize: 20,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
-                              )),
+                              )),*/
                         ),
 
                         /* ElevatedButton(
@@ -208,18 +213,25 @@ class _MyAppState extends State<MyApp> {
                           height: 100,
                           width: 350,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Colors.deepPurpleAccent,
                             borderRadius: BorderRadius.circular(30),
-                            
-                            ),
-                          
-                          child:  Text('      Scan result : $_scanBarcode\n',
+                          ),
+                          child: TextButton(
+                              onPressed: () => WebView(initialUrl: 'https://flutter.dev/',),
+                              child: Text(
+                                'webview',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                          /*child:  Text('      Scan result : $_scanBarcode\n',
                             style:
                                 TextStyle(fontSize: 20, 
                                 color: Colors.black,
                                 
-                                )),
-                          )
+                                )),*/
+                        )
                         /*Text('Scan result : $_scanBarcode\n',
                             style:
                                 TextStyle(fontSize: 20, 
